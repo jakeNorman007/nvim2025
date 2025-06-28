@@ -41,7 +41,7 @@ end
 
 local toggle = function()
   if not vim.api.nvim_win_is_valid(state.float.win) then
-    state.float = open_double_terminal { buf = state.float.buf }
+    state.float = M.open_double_terminal({ buf = state.float.buf })
     if vim.bo[state.float.buf].buftype ~= "terminal" then
       vim.cmd.terminal()
     end
@@ -51,7 +51,10 @@ local toggle = function()
   end
 end
 
-vim.cmd.nvim_create_user_command("Dt", toggle, {})
+vim.api.nvim_create_user_command("Dt", function()
+  require("double_terminal").toggle()
+end, {})
+
 vim.keymap.set({ "n", "t" }, "<space>t", toggle)
 
 return M

@@ -51,14 +51,14 @@ function M.open_ui_window(opts)
 end
 
 local toggle = function()
-  if vim.api.nvim_if_win_is_valid(state.ui.win) then
-    state.ui = open_ui_window { buf = state.ui.buf }
+  if not vim.api.nvim_win_is_valid(state.ui.win) then
+    state.ui = M.open_ui_window({ buf = state.ui.buf })
   else
     vim.api.nvim_win_hide(state.ui.win)
   end
 end
 
-vim.cmd.nvim_create_user_command("Gr", function() 
+vim.api.nvim_create_user_command("Gr", function()
   require("g_whisper").toggle()
 end, {})
 
