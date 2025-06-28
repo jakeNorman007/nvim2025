@@ -15,15 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
   {
-    "olivercederborg/poimandres.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme poimandres]])
-    end,
-  },
-
-  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v4.x"
   },
@@ -61,7 +52,6 @@ require("lazy").setup({
     branch = "harpoon2",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
     }
   },
 
